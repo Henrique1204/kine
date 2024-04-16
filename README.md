@@ -1,6 +1,6 @@
 # Nike - Loja de Camisas
 
-Projeto desenvolvido para vaga de desenvolvedor front-end para empresa `Facilita Juridico`.
+Projeto desenvolvido para vaga de desenvolvedor front-end para empresa `Facilita Jurídico`.
 
 ## Objetivo
 
@@ -24,3 +24,23 @@ Além disso, deverá ser desenvolvida uma tela de detalhes da camiseta. Essa tel
 - `Estilização`: Tailwind CSS
 - `Framework`: Next.js para uma melhor experiência de desenvolvimento e otimização.
 
+
+# Configuração
+
+1. Clone o repositório:
+
+```shell
+git clone https://github.com/Henrique1204/kine.git
+```
+
+2. Instale as dependências:
+
+```shell
+npm install
+```
+
+3. Inicie o servidor de desenvolvimento:
+
+```shell
+npm run dev
+```
