@@ -23,7 +23,11 @@ export default function Home() {
 
 			<Filter.FilterField />
 
-			<ProductItem {...shirts[0]} imageSrc={shirts[0].imageUrl} />
+			<div className='flex gap-8 flex-wrap justify-center mt-10'>
+				{shirts.map(({ imageUrl, ...shirt }) => (
+					<ProductItem {...shirt} imageSrc={imageUrl} />
+				))}
+			</div>
 		</MainContent>
 	);
 }

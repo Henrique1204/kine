@@ -32,7 +32,7 @@ export function ProductItem({
 				className='object-cover object-center h-44 w-full rounded-t'
 			/>
 
-			<h1 className='font-bold text-xl text-gray-600 text-center mt-4 mb-5'>
+			<h1 className='font-bold text-xl text-gray-600 text-center mt-3 mb-3'>
 				{name}
 			</h1>
 
