@@ -16,8 +16,16 @@ export function ProductItem({
 	price,
 	imageSrc,
 }) {
-	const [sizeSelected, setSizeSelected] = React.useState('');
-	const [colorSelected, setColorSelected] = React.useState('');
+	const [sizeSelected, setSizeSelected] = React.useState([]);
+	const [colorSelected, setColorSelected] = React.useState([]);
+
+	function handlSizeSelection(sizeSelected) {
+		setSizeSelected([sizeSelected]);
+	}
+
+	function handlColorSelection(colorSelected) {
+		setColorSelected([colorSelected]);
+	}
 
 	function handleRedirectToDetails() {}
 
@@ -42,15 +50,17 @@ export function ProductItem({
 
 			<div className='flex justify-between items-start mt-5 mx-4'>
 				<OptionList.SizesList
+					keyId={`shirt-${id}`}
 					data={sizes}
-					onSelectSize={setSizeSelected}
-					sizeSelected={sizeSelected}
+					onSelectSizes={handlSizeSelection}
+					sizesSelected={sizeSelected}
 				/>
 
 				<OptionList.ColorsList
+					keyId={`shirt-${id}`}
 					data={colors}
-					onSelectColor={setColorSelected}
-					colorSelected={colorSelected}
+					onSelectColors={handlColorSelection}
+					colorsSelected={colorSelected}
 				/>
 			</div>
 

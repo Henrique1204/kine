@@ -14,7 +14,7 @@ export function ColorOption({ value, color, onSelect, isChecked }) {
 	return (
 		<span
 			onClick={handleSelectByClick}
-			className={`rounded flex-1 w-5 h-5 cursor-pointer border border-gray-500 ${generateStyle()}`}
+			className={`rounded flex-1 min-w-5 min-h-5 cursor-pointer border border-gray-500 ${generateStyle()}`}
 			style={{
 				backgroundColor: color,
 			}}
