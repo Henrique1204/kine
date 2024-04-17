@@ -1,8 +1,13 @@
 'use client';
 
-import * as Filter from '@/Components/Filter/BasicFilter';
+import { shirts } from '@/Data/shirts';
+
 import { Head } from '@/Components/Head';
 import { MainContent } from '@/Components/MainContent';
+
+import * as Filter from '@/Components/Filter/BasicFilter';
+
+import { ProductItem } from '@/Components/ProductItem';
 
 export default function Home() {
 	return (
@@ -17,6 +22,8 @@ export default function Home() {
 			</Head>
 
 			<Filter.FilterField />
+
+			<ProductItem {...shirts[0]} imageSrc={shirts[0].imageUrl} />
 		</MainContent>
 	);
 }

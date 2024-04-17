@@ -7,6 +7,11 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			spacing: {
+				105: '26.25rem',
+				'negative-2': '-0.5rem',
+				'negative-3': '-0.75rem',
+			},
 			boxShadow: {
 				sm: '0 1px 8px rgb(0 0 0 / 0.05);',
 			},
