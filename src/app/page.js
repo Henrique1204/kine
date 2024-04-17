@@ -1,9 +1,22 @@
-export const metadata = {
-	title: 'Kine - Home',
-	description:
-		'Loja de Camisetas Kine, encontre a opção que melhor se molda ao seu corpo.',
-};
+'use client';
+
+import Head from 'next/head';
+
+import * as Filter from '@/Components/Filter/BasicFilter';
+import { MainContent } from '@/Components/MainContent';
 
 export default function Home() {
-	return <></>;
+	return (
+		<MainContent>
+			<Head>
+				<title>Kine - Home</title>
+
+				<meta
+					name='description'
+					content='Loja de Camisetas Kine, encontre a opção que melhor se molda ao seu corpo.'
+				/>
+			</Head>
+			<Filter.FilterField />
+		</MainContent>
+	);
 }
