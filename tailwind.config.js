@@ -11,6 +11,7 @@ module.exports = {
 				162: '31rem',
 				'negative-2': '-0.5rem',
 				'negative-3': '-0.75rem',
+				'negative-6': '-1.5rem',
 			},
 			boxShadow: {
 				sm: '0 1px 8px rgb(0 0 0 / 0.05);',

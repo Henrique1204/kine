@@ -1,15 +1,16 @@
 'use client';
 
-import { shirts } from '@/Data/shirts';
-
 import { Head } from '@/Components/Head';
 import { MainContent } from '@/Components/MainContent';
 
-import * as Filter from '@/Components/Filter/BasicFilter';
+import * as Filter from '@/Components/Filter';
 
 import { ProductItem } from '@/Components/ProductItem';
+import ShirtContext from '@/Contexts/useShirtsContext';
 
 export default function Home() {
+	const { shirts } = ShirtContext.useShirts();
+
 	return (
 		<MainContent>
 			<Head>
@@ -25,7 +26,11 @@ export default function Home() {
 
 			<div className='flex gap-8 flex-wrap justify-center mt-10'>
 				{shirts.map(({ imageUrl, ...shirt }) => (
-					<ProductItem {...shirt} imageSrc={imageUrl} />
+					<ProductItem
+						key={`product-item-${shirt.id}`}
+						{...shirt}
+						imageSrc={imageUrl}
+					/>
 				))}
 			</div>
 		</MainContent>

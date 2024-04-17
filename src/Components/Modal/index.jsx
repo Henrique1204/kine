@@ -28,10 +28,16 @@ export function Header({ title, id }) {
 	);
 }
 
+export function Content({ children, className }) {
+	return (
+		<div className={`flex-1 flex flex-col p-6 ${className}`}>{children}</div>
+	);
+}
+
 export function Card({ children, className }) {
 	return (
 		<div
-			className={`overflow-hidden relative p-6 bg-white-100 shadow shadow-gray-400 rounded z-10 ${className}`}
+			className={`overflow-hidden relative flex flex-col bg-white-200 shadow shadow-gray-400 rounded z-10 ${className}`}
 		>
 			{children}
 		</div>
@@ -63,7 +69,7 @@ export function Modal({ id, children }) {
 
 	return (
 		<div
-			className={`flex justify-center items-center fixed top-0 left-0 w-dvw h-dvh ${generateStyle()}`}
+			className={`flex justify-center items-center fixed top-0 left-0 w-dvw h-dvh z-50 ${generateStyle()}`}
 		>
 			<div
 				className='absolute w-full h-full bg-gray-50 top-0 left-0 z-0 cursor-pointer'
