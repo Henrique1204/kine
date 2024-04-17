@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { Button } from '@/Components/Button';
+import * as OptionList from '@/Components/OptionList';
 
 import { Card } from './Card';
 import { PriceTag } from './PriceTag';
+import { clearPreviewData } from 'next/dist/server/api-utils';
 
 export function ProductItem({
 	id,
@@ -14,7 +16,12 @@ export function ProductItem({
 	price,
 	imageSrc,
 }) {
-	const handleBuyProduct = () => {};
+	const [sizeSelected, setSizeSelected] = React.useState('');
+	const [colorSelected, setColorSelected] = React.useState('');
+
+	function handleRedirectToDetails() {}
+
+	function handleBuyProduct() {}
 
 	return (
 		<Card>
@@ -33,7 +40,28 @@ export function ProductItem({
 				{description}
 			</p>
 
-			<Button className='mt-auto rounded-b' onClick={handleBuyProduct}>
+			<div className='flex justify-between items-start mt-5 mx-4'>
+				<OptionList.SizesList
+					data={sizes}
+					onSelectSize={setSizeSelected}
+					sizeSelected={sizeSelected}
+				/>
+
+				<OptionList.ColorsList
+					data={colors}
+					onSelectColor={setColorSelected}
+					colorSelected={colorSelected}
+				/>
+			</div>
+
+			<Button
+				className='mt-auto rounded-none'
+				onClick={handleRedirectToDetails}
+			>
+				Ver Mais
+			</Button>
+
+			<Button className='rounded-b bg-orange-600' onClick={handleBuyProduct}>
 				Comprar
 			</Button>
 		</Card>
