@@ -11,8 +11,6 @@ export function ColorOption({ value, color, onSelect, isChecked }) {
 		return '';
 	}
 
-	console.log(color);
-
 	return (
 		<span
 			onClick={handleSelectByClick}

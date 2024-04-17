@@ -16,6 +16,7 @@ module.exports = {
 				sm: '0 1px 8px rgb(0 0 0 / 0.05);',
 			},
 			colors: {
+				'gray-50': 'rgba(0, 0, 0, 0.3)',
 				'gray-400': '#848280',
 				'gray-600': '#343434',
 				'gray-700': '#1A1A1A',
