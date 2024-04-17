@@ -1,6 +1,10 @@
+'use client';
+
 import { Inter } from 'next/font/google';
 
 import { Header } from '@/Components/Header';
+
+import ShirtsContext from '@/Contexts/useShirtsContext';
 
 import './globals.css';
 
@@ -12,7 +16,7 @@ export default function RootLayout({ children }) {
 			<body className={inter.className}>
 				<Header />
 
-				{children}
+				<ShirtsContext.Provider>{children}</ShirtsContext.Provider>
 			</body>
 		</html>
 	);
