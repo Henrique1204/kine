@@ -4,6 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import { FaFilter, FaFilterCircleXmark } from 'react-icons/fa6';
 
 import { debounce } from '@/Core/Utils/debounce';
+import { applyFilterDTO } from '@/Core/Helpers/filterDto';
 
 import FilterShirts from '@/Contexts/useFilterShirts';
 
@@ -14,7 +15,7 @@ import { Input } from '@/Components/Input';
 
 import { FilterModal } from '../FilterModal';
 
-export function FilterField({}) {
+export function FilterSearch({}) {
 	const [nameToFilter, setNameToFilter] = React.useState('');
 
 	const { filterStateApplied, applyFilters, clearFilters } =
@@ -29,7 +30,12 @@ export function FilterField({}) {
 	}
 
 	function handleApplyFilter() {
-		applyFilters({ ...filterStateApplied, name: nameToFilter });
+		applyFilters(
+			applyFilterDTO({
+				...filterStateApplied,
+				nameToFilter,
+			})
+		);
 	}
 
 	const [handleApplyFilterWithDebounce, clearDebounce] = debounce(

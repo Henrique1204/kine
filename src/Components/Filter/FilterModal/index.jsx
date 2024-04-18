@@ -3,6 +3,7 @@ import React from 'react';
 import { getUniqueShirtColors } from '@/Core/Helpers/getUniqueShirtColors';
 import { DEFAULT_SIZE } from '@/Core/Constants/sizes';
 import { UNMASKS } from '@/Core/Helpers/inputMasks';
+import { applyFilterDTO } from '@/Core/Helpers/filterDto';
 
 import ShirtsContext from '@/Contexts/useShirtsContext';
 import FilterShirts, { filterReducer } from '@/Contexts/useFilterShirts';
@@ -66,13 +67,13 @@ export function FilterModal() {
 	}
 
 	function handleApplyFilters() {
-		applyFilters({
-			name: filterState.nameToFilter,
-			minPrice: UNMASKS.currency(filterState.minPriceToFilter),
-			maxPrice: UNMASKS.currency(filterState.maxPriceToFilter),
-			sizes: filterState.sizes,
-			colors: filterState.colors,
-		});
+		applyFilters(
+			applyFilterDTO({
+				...filterState,
+				minPriceToFilter: UNMASKS.currency(filterState.minPriceToFilter),
+				maxPriceToFilter: UNMASKS.currency(filterState.maxPriceToFilter),
+			})
+		);
 
 		Modal.close(Modal.FILTER_MODAL_ID);
 	}

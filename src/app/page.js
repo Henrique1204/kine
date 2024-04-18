@@ -25,7 +25,7 @@ export default function Home() {
 				/>
 			</Head>
 
-			<Filter.FilterField />
+			<Filter.FilterSearch />
 
 			{havaFilterApplied && (
 				<h3 className='text-gray-600 text-sm underline mx-auto mt-6 w-fit text-center'>

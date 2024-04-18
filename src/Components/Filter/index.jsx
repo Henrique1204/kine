@@ -1,2 +1,2 @@
-export * from './BasicFilter';
+export * from './FilterSearch';
 export * from './FilterModal';
