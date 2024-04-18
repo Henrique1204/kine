@@ -45,7 +45,9 @@ export default function Home() {
 					))}
 
 					{isEmptyShirtList && (
-						<h3 className='text-gray-600 text-md'>Nenhuma camisa encontrada</h3>
+						<h3 className='text-gray-600 text-md'>
+							Nenhum produto encontradao.
+						</h3>
 					)}
 				</div>
 			</Loader>

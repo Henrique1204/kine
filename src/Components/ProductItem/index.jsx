@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import { Button } from '@/Components/Button';
 import * as OptionList from '@/Components/OptionList';
 
@@ -15,8 +17,11 @@ export function ProductItem({
 	price,
 	imageSrc,
 }) {
+	const [isRedirecting, setIsRedirecting] = React.useState(false);
 	const [sizeSelected, setSizeSelected] = React.useState([]);
 	const [colorSelected, setColorSelected] = React.useState([]);
+
+	const router = useRouter();
 
 	function handlSizeSelection(sizeSelected) {
 		setSizeSelected([sizeSelected]);
@@ -26,7 +31,11 @@ export function ProductItem({
 		setColorSelected([colorSelected]);
 	}
 
-	function handleRedirectToDetails() {}
+	function handleRedirectToDetails() {
+		setIsRedirecting(true);
+
+		router.push(`/detalhes/${id}`);
+	}
 
 	function handleBuyProduct() {}
 
@@ -66,6 +75,7 @@ export function ProductItem({
 			<Button
 				className='mt-auto rounded-none'
 				onClick={handleRedirectToDetails}
+				isDisabled={isRedirecting}
 			>
 				Ver Mais
 			</Button>

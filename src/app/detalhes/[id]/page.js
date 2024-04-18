@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { Head } from '@/Components/Head';
 import { MainContent } from '@/Components/MainContent';
 import { ProductDetails } from '@/Components/ProductDetails';
+import { InternalHeader } from '@/Components/InternalHeader';
 
 export async function getData(shirtId) {
 	if (isNaN(shirtId)) redirect('/');
@@ -28,6 +29,8 @@ export default async function Details({ params }) {
 
 				<meta name='description' content={details.description} />
 			</Head>
+
+			<InternalHeader title='Voltar para Home' />
 
 			<div className='flex gap-10'>
 				<img
