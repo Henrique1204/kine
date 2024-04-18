@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { IoMdSend } from 'react-icons/io';
+import { FaSearch } from 'react-icons/fa';
 import { FaFilter, FaFilterCircleXmark } from 'react-icons/fa6';
+
+import { debounce } from '@/Core/Utils/debounce';
 
 import FilterShirts from '@/Contexts/useFilterShirts';
 
@@ -22,13 +24,24 @@ export function FilterField({}) {
 		Modal.open(Modal.FILTER_MODAL_ID);
 	}
 
-	function handleApplyNameFilter() {
-		applyFilters({ name: nameToFilter });
-	}
-
 	function handleClearFilter() {
 		clearFilters();
 	}
+
+	function handleApplyFilter() {
+		applyFilters({ name: nameToFilter });
+	}
+
+	const [handleApplyFilterWithDebounce, clearDebounce] = debounce(
+		handleApplyFilter,
+		200
+	);
+
+	React.useEffect(() => {
+		handleApplyFilterWithDebounce();
+
+		return clearDebounce;
+	}, [nameToFilter]);
 
 	React.useEffect(() => {
 		setNameToFilter(filterStateApplied.nameToFilter);
@@ -45,12 +58,10 @@ export function FilterField({}) {
 						onChange={setNameToFilter}
 					/>
 
-					<ButtonIcon
-						className='hover:scale-110 absolute right-0 text-orange-500 hover:text-orange-700'
-						onClick={handleApplyNameFilter}
-					>
-						<IoMdSend className='text-inherit transition' size={24} />
-					</ButtonIcon>
+					<FaSearch
+						className={`absolute right-4 text-orange-500 text-inherit`}
+						size={16}
+					/>
 				</div>
 
 				<ButtonIcon

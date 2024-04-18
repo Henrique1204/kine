@@ -6,13 +6,14 @@ import { MASKS } from '@/Core/Helpers/inputMasks';
 
 const INPUT_DEFAULT_CLASS_NAMES = `flex-1 p-2 pr-12 bg-white-100 border-none placeholder:text-gray-400 text-gray-600 outline-none`;
 
-export function Input({ className, placeholder, value, onChange }) {
+export function Input({ className, placeholder, value, onChange, ...props }) {
 	function handleOnChange({ target }) {
 		onChange?.(target.value);
 	}
 
 	return (
 		<input
+			{...props}
 			className={`${INPUT_DEFAULT_CLASS_NAMES} ${className}`}
 			placeholder={placeholder}
 			value={value}
