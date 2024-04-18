@@ -31,7 +31,7 @@ export class FilterShirts {
 	}
 
 	byMaxPrice(maxPriceToFilter) {
-		if (typeof maxPriceToFilter !== 'number' || maxPriceToFilter < 0) {
+		if (typeof maxPriceToFilter !== 'number' || maxPriceToFilter <= 0) {
 			return this;
 		}
 

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { getUniqueShirtColors } from '@/Core/Helpers/getUniqueShirtColors';
 import { DEFAULT_SIZE } from '@/Core/Constants/sizes';
+import { UNMASKS } from '@/Core/Helpers/inputMasks';
 
 import ShirtsContext from '@/Contexts/useShirtsContext';
 import FilterShirts, { filterReducer } from '@/Contexts/useFilterShirts';
@@ -61,10 +62,12 @@ export function FilterModal() {
 	}
 
 	function handleApplyFilters() {
+		console.log(filterState);
+
 		applyFilters({
 			name: filterState.nameToFilter,
-			minPrice: filterState.minPriceToFilter,
-			maxPrice: filterState.maxPriceToFilter,
+			minPrice: UNMASKS.currency(filterState.minPriceToFilter),
+			maxPrice: UNMASKS.currency(filterState.maxPriceToFilter),
 			sizes: filterState.sizes,
 			colors: filterState.colors,
 		});
@@ -99,6 +102,7 @@ export function FilterModal() {
 						<Input.Label label='Nome' />
 
 						<Input.Input
+							name='name'
 							className='rounded shadow shadow-gray-200 w-full'
 							placeholder='Ex: Camiseta Kine'
 							onChange={handleNameChange}
@@ -109,7 +113,8 @@ export function FilterModal() {
 					<Input.Field>
 						<Input.Label label='Preço mínimo' />
 
-						<Input.Input
+						<Input.InputMoney
+							name='minPrice'
 							className='rounded shadow shadow-gray-200 w-full'
 							placeholder='R$ 0,00'
 							onChange={handleMinPriceChange}
@@ -119,7 +124,9 @@ export function FilterModal() {
 
 					<Input.Field>
 						<Input.Label label='Preço máximo' />
-						<Input.Input
+
+						<Input.InputMoney
+							name='maxPrice'
 							className='rounded shadow shadow-gray-200 w-full'
 							placeholder='R$ 20,00'
 							onChange={handleMaxPriceChange}
