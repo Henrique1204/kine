@@ -32,10 +32,10 @@ export default async function Details({ params }) {
 
 			<InternalHeader title='Voltar para Home' />
 
-			<div className='flex gap-10'>
+			<div className='flex flex-col gap-10 md:flex-row'>
 				<img
 					src={details.imageUrl}
-					className='object-cover object-center w-full max-w-240 rounded flex-1 min-h-96 max-h-112 '
+					className='object-cover object-center w-full max-w-240 rounded flex-1 max-h-56 md:min-h-96 md:max-h-112 '
 				/>
 
 				<ProductDetails {...details} />
