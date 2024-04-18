@@ -1,3 +1,5 @@
+import * as Validates from '@/Core/Helpers/validateTypes';
+
 export class FilterShirts {
 	constructor(shirts) {
 		this.originalShirts = shirts;
@@ -5,9 +7,9 @@ export class FilterShirts {
 	}
 
 	byName(nameToFilter) {
-		if (typeof nameToFilter !== 'string' || nameToFilter.trim() === '') {
-			return this;
-		}
+		const isInvalidName = Validates.validateIsInvalidString(nameToFilter);
+
+		if (isInvalidName) return this;
 
 		const lowerCaseNameToFilter = nameToFilter.toLowerCase();
 
@@ -19,9 +21,10 @@ export class FilterShirts {
 	}
 
 	byMinPrice(minPriceToFilter) {
-		if (typeof minPriceToFilter !== 'number' || minPriceToFilter < 0) {
-			return this;
-		}
+		const isInvalidPrice =
+			Validates.validateIsInvalidMinPrice(minPriceToFilter);
+
+		if (isInvalidPrice) return this;
 
 		this.shirtsFiltered = this.shirtsFiltered.filter((shirt) => {
 			return shirt.price >= minPriceToFilter;
@@ -31,9 +34,10 @@ export class FilterShirts {
 	}
 
 	byMaxPrice(maxPriceToFilter) {
-		if (typeof maxPriceToFilter !== 'number' || maxPriceToFilter <= 0) {
-			return this;
-		}
+		const isInvalidPrice =
+			Validates.validateIsInvalidMaxPrice(maxPriceToFilter);
+
+		if (isInvalidPrice) return this;
 
 		this.shirtsFiltered = this.shirtsFiltered.filter((shirt) => {
 			return shirt.price <= maxPriceToFilter;
@@ -43,9 +47,9 @@ export class FilterShirts {
 	}
 
 	bySizes(sizesToFilter) {
-		if (!Array.isArray(sizesToFilter) || sizesToFilter.length === 0) {
-			return this;
-		}
+		const isValidArray = Validates.validateIsEmptyArray(sizesToFilter);
+
+		if (isValidArray) return this;
 
 		this.shirtsFiltered = this.shirtsFiltered.filter((shirt) => {
 			return sizesToFilter.some((size) => {
@@ -59,9 +63,9 @@ export class FilterShirts {
 	}
 
 	byColors(colorsToFilter) {
-		if (!Array.isArray(colorsToFilter) || colorsToFilter.length === 0) {
-			return this;
-		}
+		const isValidArray = Validates.validateIsEmptyArray(colorsToFilter);
+
+		if (isValidArray) return this;
 
 		this.shirtsFiltered = this.shirtsFiltered.filter((shirt) => {
 			return colorsToFilter.some((color) => {

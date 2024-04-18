@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { FilterShirts } from '@/Core/Helpers/FilterShirts';
+import { validateIsEmptyArray } from '@/Core/Helpers/validateTypes';
 
 import ShirtsContext from '@/Contexts/useShirtsContext';
 
@@ -29,6 +30,8 @@ export function FilterShirtsProvider({ children }) {
 	const filter = new FilterShirts(shirts);
 
 	function applyFilters({ name, minPrice, maxPrice, sizes, colors }) {
+		if (validateIsEmptyArray(shirts)) return;
+
 		setFilterStateApplied({
 			nameToFilter: name,
 			minPriceToFilter: minPrice,
