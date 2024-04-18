@@ -29,7 +29,7 @@ export function FilterField({}) {
 	}
 
 	function handleApplyFilter() {
-		applyFilters({ name: nameToFilter });
+		applyFilters({ ...filterStateApplied, name: nameToFilter });
 	}
 
 	const [handleApplyFilterWithDebounce, clearDebounce] = debounce(

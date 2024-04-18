@@ -11,6 +11,8 @@ import ShirtContext from '@/Contexts/useShirtsContext';
 export default function Home() {
 	const { shirtsFiltered } = ShirtContext.useShirts();
 
+	const isEmptyShirtList = shirtsFiltered.length === 0;
+
 	return (
 		<MainContent>
 			<Head>
@@ -32,6 +34,10 @@ export default function Home() {
 						imageSrc={imageUrl}
 					/>
 				))}
+
+				{isEmptyShirtList && (
+					<h3 className='text-gray-600 text-md'>Nenhuma camisa encontrada</h3>
+				)}
 			</div>
 		</MainContent>
 	);

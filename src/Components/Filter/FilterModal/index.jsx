@@ -12,7 +12,11 @@ import * as OptionList from '@/Components/OptionList';
 import * as Input from '@/Components/Input';
 import { Button } from '@/Components/Button';
 
+import { PriceFilter } from '../PriceFilter';
+
 export function FilterModal() {
+	const [haveErrorInFilter, setHaveErrorInFilter] = React.useState(false);
+
 	const { filterStateApplied, applyFilters, clearFilters } =
 		FilterShirts.useFilterShirts();
 
@@ -62,8 +66,6 @@ export function FilterModal() {
 	}
 
 	function handleApplyFilters() {
-		console.log(filterState);
-
 		applyFilters({
 			name: filterState.nameToFilter,
 			minPrice: UNMASKS.currency(filterState.minPriceToFilter),
@@ -110,29 +112,13 @@ export function FilterModal() {
 						/>
 					</Input.Field>
 
-					<Input.Field>
-						<Input.Label label='Preço mínimo' />
-
-						<Input.InputMoney
-							name='minPrice'
-							className='rounded shadow shadow-gray-200 w-full'
-							placeholder='R$ 0,00'
-							onChange={handleMinPriceChange}
-							value={filterState.minPriceToFilter}
-						/>
-					</Input.Field>
-
-					<Input.Field>
-						<Input.Label label='Preço máximo' />
-
-						<Input.InputMoney
-							name='maxPrice'
-							className='rounded shadow shadow-gray-200 w-full'
-							placeholder='R$ 20,00'
-							onChange={handleMaxPriceChange}
-							value={filterState.maxPriceToFilter}
-						/>
-					</Input.Field>
+					<PriceFilter
+						minPriceValue={filterState.minPriceToFilter}
+						maxPriceValue={filterState.maxPriceToFilter}
+						onChangeMinPrice={handleMinPriceChange}
+						onChangeMaxPrice={handleMaxPriceChange}
+						onError={setHaveErrorInFilter}
+					/>
 
 					<OptionList.SizesList
 						data={DEFAULT_SIZE}
@@ -151,7 +137,11 @@ export function FilterModal() {
 					Limpar Filtros
 				</Button>
 
-				<Button className='bg-orange-600' onClick={handleApplyFilters}>
+				<Button
+					className='bg-orange-600'
+					onClick={handleApplyFilters}
+					isDisabled={haveErrorInFilter}
+				>
 					Filtrar
 				</Button>
 			</Modal.Card>

@@ -1,9 +1,8 @@
 export function validateIfIsNull(value) {
 	const isNull = value === null;
 	const isUndefined = value === undefined;
-	const isEmptyObject = Object.keys(value || {}).length === 0;
 
-	return isNull || isUndefined || isEmptyObject;
+	return isNull || isUndefined;
 }
 
 export function validateIsInvalidString(value) {
