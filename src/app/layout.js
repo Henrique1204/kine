@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import { Header } from '@/Components/Header';
 
 import ShirtsContext from '@/Contexts/useShirtsContext';
+import FilterShirts from '@/Contexts/useFilterShirts';
 
 import './globals.css';
 
@@ -16,7 +17,9 @@ export default function RootLayout({ children }) {
 			<body className={inter.className}>
 				<Header />
 
-				<ShirtsContext.Provider>{children}</ShirtsContext.Provider>
+				<ShirtsContext.Provider>
+					<FilterShirts.Provider>{children}</FilterShirts.Provider>
+				</ShirtsContext.Provider>
 			</body>
 		</html>
 	);

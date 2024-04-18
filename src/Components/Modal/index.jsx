@@ -9,8 +9,9 @@ export * from './constants';
 export let open = (id) => {};
 export let close = (idToClose) => {};
 
-export function Header({ title, id }) {
+export function Header({ title, id, onBack }) {
 	function handleCloseModal() {
+		onBack?.();
 		close(id);
 	}
 
@@ -44,7 +45,7 @@ export function Card({ children, className }) {
 	);
 }
 
-export function Modal({ id, children }) {
+export function Modal({ id, children, onBackgroundClose }) {
 	const [isVisible, setIsVisible] = React.useState(false);
 
 	open = (idToOpen) => {
@@ -52,24 +53,22 @@ export function Modal({ id, children }) {
 	};
 
 	close = (idToClose) => {
-		if (idToClose === id) setIsVisible(false);
+		if (idToClose === id) {
+			setIsVisible(false);
+		}
 	};
 
-	function generateStyle() {
-		if (isVisible) {
-			return '';
-		}
-
-		return 'hidden';
-	}
-
 	function handleClickInBackground() {
+		onBackgroundClose?.();
+
 		setIsVisible(false);
 	}
 
+	if (!isVisible) return null;
+
 	return (
 		<div
-			className={`flex justify-center items-center fixed top-0 left-0 w-dvw h-dvh z-50 ${generateStyle()}`}
+			className={`flex justify-center items-center fixed top-0 left-0 w-dvw h-dvh z-50`}
 		>
 			<div
 				className='absolute w-full h-full bg-gray-50 top-0 left-0 z-0 cursor-pointer'

@@ -6,7 +6,7 @@ export function ColorOption({ value, color, onSelect, isChecked }) {
 	}
 
 	function generateStyle() {
-		if (isChecked) return 'scale-110 rotate-45 transition';
+		if (isChecked) return 'scale-110 rotate-45';
 
 		return '';
 	}
@@ -14,7 +14,7 @@ export function ColorOption({ value, color, onSelect, isChecked }) {
 	return (
 		<span
 			onClick={handleSelectByClick}
-			className={`rounded flex-1 min-w-5 min-h-5 max-w-5 max-h-5 cursor-pointer border border-gray-500 ${generateStyle()}`}
+			className={`rounded flex-1 min-w-5 min-h-5 max-w-5 max-h-5 cursor-pointer border border-gray-500 transition ${generateStyle()}`}
 			style={{
 				backgroundColor: color,
 			}}

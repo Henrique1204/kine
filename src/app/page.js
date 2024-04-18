@@ -9,7 +9,7 @@ import { ProductItem } from '@/Components/ProductItem';
 import ShirtContext from '@/Contexts/useShirtsContext';
 
 export default function Home() {
-	const { shirts } = ShirtContext.useShirts();
+	const { shirtsFiltered } = ShirtContext.useShirts();
 
 	return (
 		<MainContent>
@@ -25,7 +25,7 @@ export default function Home() {
 			<Filter.FilterField />
 
 			<div className='flex gap-8 flex-wrap justify-center mt-10'>
-				{shirts.map(({ imageUrl, ...shirt }) => (
+				{shirtsFiltered.map(({ imageUrl, ...shirt }) => (
 					<ProductItem
 						key={`product-item-${shirt.id}`}
 						{...shirt}

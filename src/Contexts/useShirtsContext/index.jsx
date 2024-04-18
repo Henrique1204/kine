@@ -11,6 +11,7 @@ export function ShirtsProvider({ children }) {
 		React.useState(false);
 
 	const [shirts, setShirts] = React.useState([]);
+	const [shirtsFiltered, setShirtsFiltered] = React.useState([]);
 
 	async function getShirtDetails(idToFind) {
 		try {
@@ -30,6 +31,7 @@ export function ShirtsProvider({ children }) {
 			setIsFetchingShirts(true);
 
 			setShirts(shirtsInitialData);
+			setShirtsFiltered(shirtsInitialData);
 		} catch (_) {
 		} finally {
 			setIsFetchingShirts(false);
@@ -44,12 +46,13 @@ export function ShirtsProvider({ children }) {
 		<ShirtsContext.Provider
 			value={{
 				shirts,
+				shirtsFiltered,
 
 				isFetchingShirts,
 				isGettingShirtsDetails,
 
 				getShirtDetails,
-				updateShirts: setShirts,
+				updateShirtsFiltered: setShirtsFiltered,
 			}}
 		>
 			{children}
