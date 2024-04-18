@@ -56,6 +56,7 @@ export function FilterField({}) {
 						placeholder='Filtrar por nome'
 						value={nameToFilter}
 						onChange={setNameToFilter}
+						className='max-w-60'
 					/>
 
 					<FaSearch
