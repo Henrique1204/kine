@@ -1,19 +1,19 @@
+'use client';
+
 import React from 'react';
+
+import { formatCurrencyBRL } from '@/Core/Utils/formatCurrencyBRL';
 
 import { Button } from '@/Components/Button';
 import * as OptionList from '@/Components/OptionList';
 
-import { Card } from './Card';
-import { PriceTag } from './PriceTag';
-
-export function ProductItem({
+export function ProductDetails({
 	id,
 	name,
 	description,
 	colors,
 	sizes,
 	price,
-	imageSrc,
 }) {
 	const [sizeSelected, setSizeSelected] = React.useState([]);
 	const [colorSelected, setColorSelected] = React.useState([]);
@@ -26,28 +26,15 @@ export function ProductItem({
 		setColorSelected([colorSelected]);
 	}
 
-	function handleRedirectToDetails() {}
-
 	function handleBuyProduct() {}
 
 	return (
-		<Card>
-			<PriceTag price={price} />
+		<div className='flex min-w-80 max-w-96 flex-col gap-8'>
+			<h1 className='text-3xl font-bold text-gray-600 text-start'>{name}</h1>
 
-			<img
-				src={imageSrc}
-				className='object-cover object-center h-44 w-full rounded-t'
-			/>
+			<p className='text-lg text-gray-600'>{description}</p>
 
-			<h1 className='font-bold text-xl text-gray-600 text-center mt-3 mb-3'>
-				{name}
-			</h1>
-
-			<p className='text-sm text-center text-gray-600 text-ellipsis overflow-hidden line-clamp-3 mx-4'>
-				{description}
-			</p>
-
-			<div className='flex justify-between items-start mt-5 mx-4'>
+			<div className='flex justify-start items-start gap-6'>
 				<OptionList.SizesList
 					keyId={`shirt-${id}`}
 					data={sizes}
@@ -63,16 +50,15 @@ export function ProductItem({
 				/>
 			</div>
 
-			<Button
-				className='mt-auto rounded-none'
-				onClick={handleRedirectToDetails}
-			>
-				Ver Mais
-			</Button>
+			<div className='flex flex-col gap-4 mt-auto'>
+				<h2 className='text-2xl text-gray-600 font-bold text-center'>
+					{formatCurrencyBRL(price)}
+				</h2>
 
-			<Button className='rounded-b bg-orange-600' onClick={handleBuyProduct}>
-				Comprar
-			</Button>
-		</Card>
+				<Button className='rounded bg-orange-600' onClick={handleBuyProduct}>
+					Comprar
+				</Button>
+			</div>
+		</div>
 	);
 }

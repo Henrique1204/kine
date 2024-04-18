@@ -5,7 +5,7 @@ import ShirtContext from '@/Contexts/useShirtsContext';
 import { Head } from '@/Components/Head';
 import { MainContent } from '@/Components/MainContent';
 import { ProductItem } from '@/Components/ProductItem';
-import { Loader } from '@/Components/Loader';
+import { Loader } from '@/Components/Loader.jsx';
 
 import * as Filter from '@/Components/Filter';
 
