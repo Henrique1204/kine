@@ -9,9 +9,10 @@ import { ProductItem } from '@/Components/ProductItem';
 import ShirtContext from '@/Contexts/useShirtsContext';
 
 export default function Home() {
-	const { shirtsFiltered } = ShirtContext.useShirts();
+	const { shirtsFiltered, shirts } = ShirtContext.useShirts();
 
 	const isEmptyShirtList = shirtsFiltered.length === 0;
+	const havaFilterApplied = shirtsFiltered.length < shirts.length;
 
 	return (
 		<MainContent>
@@ -25,6 +26,12 @@ export default function Home() {
 			</Head>
 
 			<Filter.FilterField />
+
+			{havaFilterApplied && (
+				<h3 className='text-gray-600 text-sm underline mx-auto mt-6 w-fit text-center'>
+					Itens Filtrados
+				</h3>
+			)}
 
 			<div className='flex gap-8 flex-wrap justify-center mt-10'>
 				{shirtsFiltered.map(({ imageUrl, ...shirt }) => (
